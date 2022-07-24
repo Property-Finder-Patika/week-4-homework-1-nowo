@@ -21,6 +21,7 @@ func (c *Calculator) addMathFunction(m mathFunction.MathFunction) {
 func (c *Calculator) doCalculation(name string, arg float64) (float64, error) {
 	var result float64
 	for _, f := range c.functions {
+		//Check if the name of the function is same as the name entered by user and make lowercase
 		if strings.ToLower(name) == strings.ToLower(f.GetName()) {
 			result = f.Calculate(arg)
 			return result, nil
@@ -36,6 +37,7 @@ func main() {
 func startCalculator() {
 	myCalculator := Calculator{}
 
+	//Define your own functions here
 	myCalculator.addMathFunction(mathFunction.Sin{"Sin"})
 	myCalculator.addMathFunction(mathFunction.Cos{"Cos"})
 	myCalculator.addMathFunction(mathFunction.Log{"Log"})
@@ -46,6 +48,7 @@ func startCalculator() {
 		fmt.Println(f.GetName())
 	}
 
+	//Start the calculator for checking flag
 	for flag {
 		var fName string
 		var arg float64
@@ -60,6 +63,7 @@ func startCalculator() {
 			fmt.Println(err)
 			os.Exit(0)
 		}
+		//Check if user wants to exit
 		if fName == "q" {
 			flag = false
 			fmt.Println("\nCalculator stopped.")
